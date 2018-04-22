@@ -13,7 +13,7 @@ reduction.ratio(block.labels)
 The reduction ratio
 }
 \description{
-import RecordLinkage
+Returns the reduction ratio associated with a blocking method
 }
 \examples{
 data("RLdata500")

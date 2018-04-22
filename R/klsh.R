@@ -65,6 +65,8 @@ bag_of_word_ify <- function(record, k, fieldwise=FALSE){
 
 #' Function to convert all records into a bag of tokens
 #'
+#' @import stats
+#' @import utils
 #' @import RecordLinkage
 #' @param r.set Record set
 #' @param k Parameter k, which is the number of shingle, tokens, or grams to break the string into
@@ -76,7 +78,7 @@ bag_of_word_ify <- function(record, k, fieldwise=FALSE){
 #' data.500 <- RLdata500[-c(2,4)]
 #' sacks_of_bags_of_words(data.500[1:3,c(-2)],k=2)
 
-sacks_of_bags_of_words <- function(r.set,k,fieldwise=FALSE) {
+sacks_of_bags_of_words <- function(r.set, k, fieldwise=FALSE) {
 	sacks <- alply(.data=r.set, .margins=1, .fun= bag_of_word_ify, .expand=FALSE,k=k,fieldwise=fieldwise)
 	return(sacks)
 }
@@ -115,6 +117,9 @@ calc_idf <- function(sack_of_bags) {
 #'
 
 #' @import RecordLinkage
+#' @import plyr
+#' @import stats
+#' @import utils
 #' @param sack_of_bags Sack of bag of words
 #' @param weighting_table Weighting table (inverse document frequency)
 #' @return Computes the inverse document frequency for a bag of words
@@ -163,7 +168,7 @@ rproject_bags <- function(sack_of_bags, weighting_table) {
 #' idf <- calc_idf(sack)
 #' bag_signatures(sack, p=5, idf)
 
-bag_signatures <- function(sack_of_bags, p=20, weighting_table) {
+bag_signatures <- function(sack_of_bags, p, weighting_table) {
 	signatures <- raply(.n=p, .expr=rproject_bags(sack_of_bags,weighting_table))
 	# raply returns 1 row per replication so we want to transpose
 	# need to use plyr 
@@ -174,10 +179,12 @@ bag_signatures <- function(sack_of_bags, p=20, weighting_table) {
 #' random projections
 #'
 #' @import RecordLinkage
+#' @import stats
 #' @param r.set Set of records
 #' @param p Number of random projections p
 #' @param num.blocks The total number of desired blocks
 #' @param k The total number of tokens
+#' @param fieldwise Flag with default FALSE
 #' @return The blocks from performing KLSH 
 #' @export
 #' @examples

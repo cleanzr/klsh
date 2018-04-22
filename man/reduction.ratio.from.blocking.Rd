@@ -10,7 +10,7 @@ reduction.ratio.from.blocking(blocking)
 \item{blocking}{The actual blocks}
 }
 \description{
-import RecordLinkage
+Returns the reduction ratio associated with a blocking method
 }
 \examples{
 data("RLdata500")

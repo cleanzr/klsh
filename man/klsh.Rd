@@ -15,6 +15,8 @@ klsh(r.set, p, num.blocks, k, fieldwise = FALSE)
 \item{num.blocks}{The total number of desired blocks}
 
 \item{k}{The total number of tokens}
+
+\item{fieldwise}{Flag with default FALSE}
 }
 \value{
 The blocks from performing KLSH

@@ -35,7 +35,7 @@ We first load the Record Linkgae package and load the RLdata500 data set. We als
 
 ```{r, echo=TRUE, message=FALSE, knitr::opts_chunk$set(cache=TRUE)}
 library(RecordLinkage)
-library(klsh)
+library(plyr)
 data(RLdata500)
 head(RLdata500)
 data.500 <- RLdata500[-c(2,4)]
@@ -46,18 +46,18 @@ head(data.500)
 
 We now explain how to run KLSH on the RLdata500 data set. Here, we use a total number of blocks to be 5 and the total number of random projections to be 20. 
 
-```{r}
-set.seed(1234)
-klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
-```
+#```{r}
+#set.seed(1234)
+#klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
+#```
 
 We now check the recall of the algorithm and the reduction ratio. 
 
-```{r}
-confusion.from.blocking(klsh.blocks)
-confusion.from.blocking(klsh.blocks, recall.only=TRUE)
-reduction.ratio.from.blocking(klsh.blocks)
-```
+#```{r}
+#confusion.from.blocking(klsh.blocks)
+#confusion.from.blocking(klsh.blocks, recall.only=TRUE)
+#reduction.ratio.from.blocking(klsh.blocks)
+#```
 
 KLSH applied to RLdata500
 ===

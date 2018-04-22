@@ -5,7 +5,7 @@
 \title{Function that reduces a bag of words into a signature matrix using multiple
 random projections}
 \usage{
-bag_signatures(sack_of_bags, p = 20, weighting_table)
+bag_signatures(sack_of_bags, p, weighting_table)
 }
 \arguments{
 \item{sack_of_bags}{Sack of bag of words}
