@@ -1,0 +1,11 @@
+#' data(RLdata500)
+#' data(RLdata500)
+block_ids_from_blocking <- function(blocking) {#
+	n <- sum(sapply(blocking,length))#
+	# initialize block ids#
+	block.ids = rep(NA, n)#
+	# map from the blocking to the blocking id (record)#
+	for(i in 1:length(blocking))  block.ids[blocking[[i]]] = i#
+	return(block.ids)#
+}
+calculate_blocking_confusion(my.blocks, mapping.all = block.ids, key=identity.RLdata500)
