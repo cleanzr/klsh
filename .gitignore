@@ -1,0 +1,10 @@
+*.aux
+*.out
+*.log
+*.DStore
+*.toc
+*.blg
+*.snm
+*.nav
+*.bat
+
