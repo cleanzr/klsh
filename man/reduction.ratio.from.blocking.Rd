@@ -9,6 +9,9 @@ reduction.ratio.from.blocking(blocking)
 \arguments{
 \item{blocking}{The actual blocks}
 }
+\value{
+The reduction ratio
+}
 \description{
 Returns the reduction ratio associated with a blocking method
 }

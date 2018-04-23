@@ -7,7 +7,8 @@ Authors@R: person("Rebecca", "Steorts", email = "beka@stat.duke.edu",
 Depends: R (>= 3.4.1),
 	RecordLinkage,
 	stats,
-	utils
+	utils,
+	plyr
 Imports: Rcpp,
 	 stringi,
 	SnowballC

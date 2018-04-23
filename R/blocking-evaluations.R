@@ -76,8 +76,10 @@ block.ids.from.blocking <- function(blocking) {
 #' Returns the reduction ratio associated with a blocking method
 #' 
 #' @import RecordLinkage
+#' @import utils
 #' @param block.labels A list of the blocks labels.
 #' @return The reduction ratio
+#' @export
 #' @examples
 #' data("RLdata500")
 #' klsh.blocks <- klsh(RLdata500, p=20, num.blocks=5, k=2)
@@ -91,6 +93,7 @@ sum(choose(table(block.labels),2)) / choose(length(block.labels),2)
 #' 
 #' @import RecordLinkage
 #' @param blocking The actual blocks 
+#' @return The reduction ratio
 #' @export
 #' @examples
 #' data("RLdata500")

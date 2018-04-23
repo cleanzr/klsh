@@ -117,7 +117,6 @@ calc_idf <- function(sack_of_bags) {
 #'
 
 #' @import RecordLinkage
-#' @import plyr
 #' @import stats
 #' @import utils
 #' @param sack_of_bags Sack of bag of words
@@ -155,6 +154,7 @@ rproject_bags <- function(sack_of_bags, weighting_table) {
 #' random projections
 #'
 #' @import RecordLinkage
+#' @import plyr
 #' @param sack_of_bags Sack of bag of words
 #' @param p Number of random projections p
 #' @param weighting_table Weighting table (inverse document frequency)
@@ -171,7 +171,6 @@ rproject_bags <- function(sack_of_bags, weighting_table) {
 bag_signatures <- function(sack_of_bags, p, weighting_table) {
 	signatures <- raply(.n=p, .expr=rproject_bags(sack_of_bags,weighting_table))
 	# raply returns 1 row per replication so we want to transpose
-	# need to use plyr 
 	return(t(signatures))
 }
 
@@ -179,7 +178,6 @@ bag_signatures <- function(sack_of_bags, p, weighting_table) {
 #' random projections
 #'
 #' @import RecordLinkage
-#' @import stats
 #' @param r.set Set of records
 #' @param p Number of random projections p
 #' @param num.blocks The total number of desired blocks
