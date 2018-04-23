@@ -1,10 +1,10 @@
-*.aux
-*.out
-*.log
-*.DStore
-*.toc
-*.blg
-*.snm
-*.nav
-*.bat
+.txt.gz
+.txt
+.gz
+.md
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.DS_store
 
