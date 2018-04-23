@@ -4,8 +4,7 @@
 \alias{confusion.from.blocking}
 \title{Perform evaluations (recall) for blocking.}
 \usage{
-confusion.from.blocking(blocking, true_ids = identity.RLdata500,
-  recall.only = FALSE)
+confusion.from.blocking(blocking, true_ids, recall.only = FALSE)
 }
 \arguments{
 \item{blocking}{A list of the blocks}

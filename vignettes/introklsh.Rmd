@@ -55,8 +55,8 @@ klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
 We now check the recall of the algorithm and the reduction ratio. 
 
 ```{r}
-confusion.from.blocking(klsh.blocks)
-confusion.from.blocking(klsh.blocks, recall.only=TRUE)
+confusion.from.blocking(klsh.blocks, true_ids = identity.RLdata500)
+confusion.from.blocking(klsh.blocks, recall.only=TRUE, true_ids = identity.RLdata500)
 reduction.ratio.from.blocking(klsh.blocks)
 ```
 

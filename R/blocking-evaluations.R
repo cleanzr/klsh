@@ -13,7 +13,7 @@
 #' confusion.from.blocking(klsh.blocks, identity.RLdata500)
 #' confusion.from.blocking(klsh.blocks, identity.RLdata500, recall.only=TRUE)
 
-confusion.from.blocking <- function(blocking, true_ids=identity.RLdata500, recall.only=FALSE) {
+confusion.from.blocking <- function(blocking, true_ids, recall.only=FALSE) {
 	# convert blocking into a vector of labels
 	nn <- sum(sapply(blocking,length))
 	block.ids = rep(NA, nn)
