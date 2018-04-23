@@ -36,6 +36,7 @@ We first load the Record Linkgae package and load the RLdata500 data set. We als
 ```{r, echo=TRUE, message=FALSE, knitr::opts_chunk$set(cache=TRUE)}
 library(RecordLinkage)
 library(plyr)
+library(klsh)
 data(RLdata500)
 head(RLdata500)
 data.500 <- RLdata500[-c(2,4)]
@@ -46,18 +47,120 @@ head(data.500)
 
 We now explain how to run KLSH on the RLdata500 data set. Here, we use a total number of blocks to be 5 and the total number of random projections to be 20. 
 
-#```{r}
-#set.seed(1234)
-#klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
-#```
+```{r}
+set.seed(1234)
+klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
+```
 
 We now check the recall of the algorithm and the reduction ratio. 
 
-#```{r}
-#confusion.from.blocking(klsh.blocks)
-#confusion.from.blocking(klsh.blocks, recall.only=TRUE)
-#reduction.ratio.from.blocking(klsh.blocks)
-#```
+```{r}
+confusion.from.blocking(klsh.blocks)
+confusion.from.blocking(klsh.blocks, recall.only=TRUE)
+reduction.ratio.from.blocking(klsh.blocks)
+```
 
-KLSH applied to RLdata500
-===
+## KLSH applied to RLdata500
+
+We consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 4.
+
+```{r}
+system.time(twohundred_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=200,k=4))
+system.time(onehundred_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=100,k=4))
+system.time(fifty_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=50,k=4))
+system.time(twentyfive_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=25,k=4))
+system.time(ten_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=10,k=4))
+system.time(five_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=5,k=4))
+system.time(three_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=3,k=4))
+
+blockings_k4 <- list(
+						twohundred_blocks_for_2e4_recs,
+						onehundred_blocks_for_2e4_recs,
+						fifty_blocks_for_2e4_recs,
+						twentyfive_blocks_for_2e4_recs,
+						ten_blocks_for_2e4_recs,
+						five_blocks_for_2e4_recs,
+						three_blocks_for_2e4_recs)
+confusions_k4 <- sapply(blockings_k4, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)	
+```
+
+Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 3.
+
+```{r}
+system.time(twohundred_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=200,k=3))
+system.time(onehundred_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=100,k=3))
+system.time(fifty_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=50,k=3))
+system.time(twentyfive_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=25,k=3))
+system.time(ten_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=10,k=3))
+system.time(five_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=5,k=3))
+system.time(three_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=3,k=3))
+
+blockings_k3 <- list(
+						twohundred_blocks_for_2e4_recs_3,
+						onehundred_blocks_for_2e4_recs_3,
+						fifty_blocks_for_2e4_recs_3,
+						twentyfive_blocks_for_2e4_recs_3,
+						ten_blocks_for_2e4_recs_3,
+						five_blocks_for_2e4_recs_3,
+						three_blocks_for_2e4_recs_3)
+
+confusions_k3 <- sapply(blockings_k3, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+```
+
+Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 2.
+
+```{r}
+system.time(twohundred_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=200,k=2))
+system.time(onehundred_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=100,k=2))
+system.time(fifty_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=50,k=2))
+system.time(twentyfive_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=25,k=2))
+system.time(ten_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=10,k=2))
+system.time(five_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=5,k=2))
+system.time(three_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=3,k=2))
+
+blockings_k2 <- list(
+						twohundred_blocks_for_2e4_recs_2,
+						onehundred_blocks_for_2e4_recs_2,
+						fifty_blocks_for_2e4_recs_2,
+						twentyfive_blocks_for_2e4_recs_2,
+						ten_blocks_for_2e4_recs_2,
+						five_blocks_for_2e4_recs_2,
+						three_blocks_for_2e4_recs_2)	
+
+confusions_k2 <- sapply(blockings_k2, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+```
+
+Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 1.
+
+```{r}
+system.time(twohundred_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=200,k=1))
+system.time(onehundred_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=100,k=1))
+system.time(fifty_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=50,k=1))
+system.time(twentyfive_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=25,k=1))
+system.time(ten_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=10,k=1))
+system.time(five_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=5,k=1))
+system.time(three_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=3,k=1))
+
+blockings_k1 <- list(
+						twohundred_blocks_for_2e4_recs_1,
+						onehundred_blocks_for_2e4_recs_1,
+						fifty_blocks_for_2e4_recs_1,
+						twentyfive_blocks_for_2e4_recs_1,
+						ten_blocks_for_2e4_recs_1,
+						five_blocks_for_2e4_recs_1,
+						three_blocks_for_2e4_recs_1)
+
+confusions_k1 <- sapply(blockings_k1, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+```
+
+We plot the recall versus total number of blocks for the shingles sizes 1,2,3 and 4. 
+
+```{r}
+plot(sapply(blockings_k4,length),confusions_k4, xlab= "Total Number of Blocks", ylab= "Recall", col="black",pch=1,ylim=c(0.4,1),type="b")	
+points(sapply(blockings_k3,length),confusions_k3, xlab= "Total Number of Blocks", ylab= "Recall", col="blue",pch=1,ylim=c(0.4,1),type="b")
+points(sapply(blockings_k2,length),confusions_k2, xlab= "Total Number of Blocks", ylab= "Recall", col="red",pch=1,ylim=c(0.4,1),type="b")
+points(sapply(blockings_k1,length),confusions_k1, xlab= "Total Number of Blocks", ylab= "Recall", col="green",pch=1,ylim=c(0.4,1),type="b")
+legend("topright",legend=c("k=4","k=3","k=2","k=1"),col=c("black","blue","red","green"), pch=c(1,1,1,1),lty=1)		
+```
+
+
