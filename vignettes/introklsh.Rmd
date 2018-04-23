@@ -82,6 +82,7 @@ blockings_k4 <- list(
 						five_blocks_for_2e4_recs,
 						three_blocks_for_2e4_recs)
 confusions_k4 <- sapply(blockings_k4, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)	
+reduction.ratio.from.blocking_k4 <- sapply(blockings_k4, reduction.ratio.from.blocking)
 ```
 
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 3.
@@ -105,6 +106,7 @@ blockings_k3 <- list(
 						three_blocks_for_2e4_recs_3)
 
 confusions_k3 <- sapply(blockings_k3, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+reduction.ratio.from.blocking_k3 <- sapply(blockings_k3, reduction.ratio.from.blocking)
 ```
 
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 2.
@@ -128,6 +130,7 @@ blockings_k2 <- list(
 						three_blocks_for_2e4_recs_2)	
 
 confusions_k2 <- sapply(blockings_k2, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+reduction.ratio.from.blocking_k2 <- sapply(blockings_k2, reduction.ratio.from.blocking)
 ```
 
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 1.
@@ -151,15 +154,26 @@ blockings_k1 <- list(
 						three_blocks_for_2e4_recs_1)
 
 confusions_k1 <- sapply(blockings_k1, confusion.from.blocking, recall.only=TRUE, true_ids = identity.RLdata500)
+reduction.ratio.from.blocking_k1 <- sapply(blockings_k1, reduction.ratio.from.blocking)
 ```
 
 We plot the recall versus total number of blocks for the shingles sizes 1,2,3 and 4. 
 
-```{r}
+```{r, fig.show="hold", fig.cap="The recall versus the total number of blocks after running KLSH using k=1,2,3,4.", fig.height = 4, fig.width = 5, fig.align = "center"}
 plot(sapply(blockings_k4,length),confusions_k4, xlab= "Total Number of Blocks", ylab= "Recall", col="black",pch=1,ylim=c(0.4,1),type="b")	
 points(sapply(blockings_k3,length),confusions_k3, xlab= "Total Number of Blocks", ylab= "Recall", col="blue",pch=1,ylim=c(0.4,1),type="b")
 points(sapply(blockings_k2,length),confusions_k2, xlab= "Total Number of Blocks", ylab= "Recall", col="red",pch=1,ylim=c(0.4,1),type="b")
 points(sapply(blockings_k1,length),confusions_k1, xlab= "Total Number of Blocks", ylab= "Recall", col="green",pch=1,ylim=c(0.4,1),type="b")
+legend("topright",legend=c("k=4","k=3","k=2","k=1"),col=c("black","blue","red","green"), pch=c(1,1,1,1),lty=1)		
+```
+
+We plot the recall versus reduction ratio for the shingles sizes 1,2,3 and 4.
+
+```{r, fig.show="hold", fig.cap="The recall versus reduction ratio after running KLSH using k=1,2,3,4.", fig.height = 4, fig.width = 5, fig.align = "center"}
+plot(sapply(blockings_k4,length),reduction.ratio.from.blocking_k4, xlab= "Reduction Ratio", ylab= "Recall", col="black",pch=1,ylim=c(0.4,1),type="b")	
+points(sapply(blockings_k3,length),reduction.ratio.from.blocking_k3, xlab= "Reduction Ratio", ylab= "Recall", col="blue",pch=1,ylim=c(0.4,1),type="b")
+points(sapply(blockings_k2,length),reduction.ratio.from.blocking_k2, xlab= "Reduction Ratio", ylab= "Recall", col="red",pch=1,ylim=c(0.4,1),type="b")
+points(sapply(blockings_k1,length),reduction.ratio.from.blocking_k1, xlab= "Reduction Ratio", ylab= "Recall", col="green",pch=1,ylim=c(0.4,1),type="b")
 legend("topright",legend=c("k=4","k=3","k=2","k=1"),col=c("black","blue","red","green"), pch=c(1,1,1,1),lty=1)		
 ```
 
