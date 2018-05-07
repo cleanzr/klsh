@@ -33,7 +33,7 @@ confusion.from.blocking <- function(blocking, true_ids, recall.only=FALSE) {
 	
 	false.positives <- confusion[2,1]
 	false.negatives <- confusion[1,2]
-	true.positives <- 	confusion[2,2]
+	true.positives <- confusion[2,2]
 	true.negatives <- confusion[1,1]
 	recall <- true.positives/(false.negatives + true.positives)
 	
@@ -86,8 +86,7 @@ block.ids.from.blocking <- function(blocking) {
 #' block.ids <- block.ids.from.blocking(klsh.blocks)
 #' reduction.ratio(block.ids)
 
-reduction.ratio <- function(block.labels) 1 -
-sum(choose(table(block.labels),2)) / choose(length(block.labels),2)
+reduction.ratio <- function(block.labels) 1 - sum(choose(table(block.labels),2)) / choose(length(block.labels),2)
 
 #' Returns the reduction ratio associated with a blocking method
 #' 
@@ -99,7 +98,6 @@ sum(choose(table(block.labels),2)) / choose(length(block.labels),2)
 #' data("RLdata500")
 #' klsh.blocks <- klsh(RLdata500, p=20, num.blocks=5, k=2)
 #' reduction.ratio.from.blocking(klsh.blocks)
-
 reduction.ratio.from.blocking <- function(blocking) {
 	reduction.ratio(block.ids.from.blocking(blocking))
 }

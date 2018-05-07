@@ -5,7 +5,7 @@
 \title{Function that reduces a bag of words into a signature matrix using multiple
 random projections}
 \usage{
-klsh(r.set, p, num.blocks, k, fieldwise = FALSE)
+klsh(r.set, p, num.blocks, k, fieldwise = FALSE, quiet = TRUE)
 }
 \arguments{
 \item{r.set}{Set of records}
@@ -17,6 +17,8 @@ klsh(r.set, p, num.blocks, k, fieldwise = FALSE)
 \item{k}{The total number of tokens}
 
 \item{fieldwise}{Flag with default FALSE}
+
+\item{quiet}{Flag to turn on printed progress, default to TRUE}
 }
 \value{
 The blocks from performing KLSH

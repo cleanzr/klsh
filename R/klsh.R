@@ -22,7 +22,7 @@
 #' @export
 #' @examples
 #' tokenify("Alexander",2)
-# tokenify("Alexander Smith", 2)
+#' tokenify("Alexander Smith", 2)
 
 tokenify <- function(string, k) {
 	k_substring <- function(start) {
@@ -183,6 +183,7 @@ bag_signatures <- function(sack_of_bags, p, weighting_table) {
 #' @param num.blocks The total number of desired blocks
 #' @param k The total number of tokens
 #' @param fieldwise Flag with default FALSE
+#' @param quiet Flag to turn on printed progress, default to TRUE
 #' @return The blocks from performing KLSH 
 #' @export
 #' @examples
@@ -190,22 +191,22 @@ bag_signatures <- function(sack_of_bags, p, weighting_table) {
 #' data.500 <- RLdata500[-c(2,4)]
 #' klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
 
-klsh <- function(r.set, p, num.blocks, k, fieldwise=FALSE) {
-	print("Filling the sack of bags of tokens")
+klsh <- function(r.set, p, num.blocks, k, fieldwise = FALSE, quiet = TRUE) {
+	if(!quiet) print("Filling the sack of bags of tokens")
 	sack_filling <- system.time(sack <- sacks_of_bags_of_words(r.set, k=k, fieldwise=fieldwise), gcFirst=FALSE)
-	print(sack_filling)
-	print("Getting IDF weights")
-	idf_weighting <- system.time(idf <- calc_idf(sack),gcFirst=FALSE)
-	print(idf_weighting)
-	print("Finding signatures by random projection")
-	projecting <- system.time(signatures <- bag_signatures(sack, p=p, idf),gcFirst=FALSE)
-	print(projecting)
-	print("Clustering by k-means")
+	if(!quiet) print(sack_filling)
+	if(!quiet) print("Getting IDF weights")
+	idf_weighting <- system.time(idf <- calc_idf(sack), gcFirst=FALSE)
+	if(!quiet) print(idf_weighting)
+	if(!quiet) print("Finding signatures by random projection")
+	projecting <- system.time(signatures <- bag_signatures(sack, p=p, idf), gcFirst=FALSE)
+	if(!quiet) print(projecting)
+	if(!quiet) print("Clustering by k-means")
 	clustering <- system.time(clusters <- kmeans(signatures, centers=num.blocks, iter.max=100)$cluster,gcFirst=FALSE)
-	print(clustering)
-	print("Entering records into blocks")
+	if(!quiet) print(clustering)
+	if(!quiet) print("Entering records into blocks")
 	records_per_block <- function(b) { which(clusters == b)}
 	blocking <- system.time(blocks <- lapply(1:num.blocks,records_per_block),gcFirst=FALSE)
-	print(blocking)
+	if(!quiet) print(blocking)
 	return(blocks)
 }

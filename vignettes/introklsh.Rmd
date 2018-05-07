@@ -109,7 +109,7 @@ confusions_k3 <- sapply(blockings_k3, confusion.from.blocking, recall.only=TRUE,
 reduction.ratio.from.blocking_k3 <- sapply(blockings_k3, reduction.ratio.from.blocking)
 ```
 
-Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 2.
+Next, we consider looking at various settings of the RLdata500 data set for block sizes 3, 5, 10, 25, 50, 100, 200 with 20 random projections and a shingle size of 2.
 
 ```{r}
 system.time(twohundred_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=200,k=2))
@@ -133,7 +133,7 @@ confusions_k2 <- sapply(blockings_k2, confusion.from.blocking, recall.only=TRUE,
 reduction.ratio.from.blocking_k2 <- sapply(blockings_k2, reduction.ratio.from.blocking)
 ```
 
-Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 1.
+Next, we consider looking at various settings of the RLdata500 data set for block sizes 3, 5, 10, 25, 50, 100, 200 with 20 random projections and a shingle size of 1.
 
 ```{r}
 system.time(twohundred_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=200,k=1))
@@ -159,22 +159,33 @@ reduction.ratio.from.blocking_k1 <- sapply(blockings_k1, reduction.ratio.from.bl
 
 We plot the recall versus total number of blocks for the shingles sizes 1,2,3 and 4. 
 
-```{r, fig.show="hold", fig.cap="The recall versus the total number of blocks after running KLSH using k=1,2,3,4.", fig.height = 4, fig.width = 5, fig.align = "center"}
-plot(sapply(blockings_k4,length),confusions_k4, xlab= "Total Number of Blocks", ylab= "Recall", col="black",pch=1,ylim=c(0.4,1),type="b")	
-points(sapply(blockings_k3,length),confusions_k3, xlab= "Total Number of Blocks", ylab= "Recall", col="blue",pch=1,ylim=c(0.4,1),type="b")
-points(sapply(blockings_k2,length),confusions_k2, xlab= "Total Number of Blocks", ylab= "Recall", col="red",pch=1,ylim=c(0.4,1),type="b")
-points(sapply(blockings_k1,length),confusions_k1, xlab= "Total Number of Blocks", ylab= "Recall", col="green",pch=1,ylim=c(0.4,1),type="b")
-legend("topright",legend=c("k=4","k=3","k=2","k=1"),col=c("black","blue","red","green"), pch=c(1,1,1,1),lty=1)		
+```{r, fig.show="hold", fig.cap="The recall versus the total number of blocks after running KLSH using k=1, 2, 3, 4.", fig.height = 4, fig.width = 5, fig.align = "center"}
+library(ggplot2)
+
+plot_dat <- rbind(
+  data.frame(k = "4", block_length = unlist(lapply(blockings_k4, length)), recall = confusions_k4, reduction_ratio = reduction.ratio.from.blocking_k4),
+  data.frame(k = "3", block_length = unlist(lapply(blockings_k3, length)), recall = confusions_k3, reduction_ratio = reduction.ratio.from.blocking_k3),
+  data.frame(k = "2", block_length = unlist(lapply(blockings_k2, length)), recall = confusions_k2, reduction_ratio = reduction.ratio.from.blocking_k2),
+  data.frame(k = "1", block_length = unlist(lapply(blockings_k1, length)), recall = confusions_k1, reduction_ratio = reduction.ratio.from.blocking_k1)
+)
+
+ggplot(plot_dat) +
+  geom_point(aes(block_length, recall, colour = k)) +
+  geom_line(aes(block_length, recall, colour = k, group = k)) +
+  xlab("Total Number of Blocks") +
+  ylab("Recall") +
+  theme_bw(base_family = "serif")
 ```
 
 We plot the recall versus reduction ratio for the shingles sizes 1,2,3 and 4.
 
 ```{r, fig.show="hold", fig.cap="The recall versus reduction ratio after running KLSH using k=1,2,3,4.", fig.height = 4, fig.width = 5, fig.align = "center"}
-plot(sapply(blockings_k4,length),reduction.ratio.from.blocking_k4, xlab= "Reduction Ratio", ylab= "Recall", col="black",pch=1,ylim=c(0.4,1),type="b")	
-points(sapply(blockings_k3,length),reduction.ratio.from.blocking_k3, xlab= "Reduction Ratio", ylab= "Recall", col="blue",pch=1,ylim=c(0.4,1),type="b")
-points(sapply(blockings_k2,length),reduction.ratio.from.blocking_k2, xlab= "Reduction Ratio", ylab= "Recall", col="red",pch=1,ylim=c(0.4,1),type="b")
-points(sapply(blockings_k1,length),reduction.ratio.from.blocking_k1, xlab= "Reduction Ratio", ylab= "Recall", col="green",pch=1,ylim=c(0.4,1),type="b")
-legend("topright",legend=c("k=4","k=3","k=2","k=1"),col=c("black","blue","red","green"), pch=c(1,1,1,1),lty=1)		
+ggplot(plot_dat) +
+  geom_point(aes(block_length, reduction_ratio, colour = k)) +
+  geom_line(aes(block_length, reduction_ratio, colour = k, group = k)) +
+  xlab("Total Number of Blocks") +
+  ylab("Reduction Ratio") +
+  theme_bw(base_family = "serif")
 ```
 
 

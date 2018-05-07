@@ -19,4 +19,5 @@ Function to token a string into its k components
 }
 \examples{
 tokenify("Alexander",2)
+tokenify("Alexander Smith", 2)
 }
