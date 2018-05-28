@@ -49,7 +49,7 @@ We now explain how to run KLSH on the RLdata500 data set. Here, we use a total n
 
 ```{r}
 set.seed(1234)
-klsh.blocks <- klsh(data.500, p=20, num.blocks=5, k=2)
+klsh.blocks <- klsh(data.500, p=100, num.blocks=5, k=2)
 ```
 
 We now check the recall of the algorithm and the reduction ratio. 
@@ -65,13 +65,13 @@ reduction.ratio.from.blocking(klsh.blocks)
 We consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 4.
 
 ```{r}
-system.time(twohundred_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=200,k=4))
-system.time(onehundred_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=100,k=4))
-system.time(fifty_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=50,k=4))
-system.time(twentyfive_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=25,k=4))
-system.time(ten_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=10,k=4))
-system.time(five_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=5,k=4))
-system.time(three_blocks_for_2e4_recs <- klsh(p=20,data.500, num.blocks=3,k=4))
+system.time(twohundred_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=200,k=4))
+system.time(onehundred_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=100,k=4))
+system.time(fifty_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=50,k=4))
+system.time(twentyfive_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=25,k=4))
+system.time(ten_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=10,k=4))
+system.time(five_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=5,k=4))
+system.time(three_blocks_for_2e4_recs <- klsh(p=100,data.500, num.blocks=3,k=4))
 
 blockings_k4 <- list(
 						twohundred_blocks_for_2e4_recs,
@@ -88,13 +88,13 @@ reduction.ratio.from.blocking_k4 <- sapply(blockings_k4, reduction.ratio.from.bl
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3,5,10,25,50,100,200 with 20 random projections and a shingle size of 3.
 
 ```{r}
-system.time(twohundred_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=200,k=3))
-system.time(onehundred_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=100,k=3))
-system.time(fifty_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=50,k=3))
-system.time(twentyfive_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=25,k=3))
-system.time(ten_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=10,k=3))
-system.time(five_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=5,k=3))
-system.time(three_blocks_for_2e4_recs_3 <- klsh(p=20,data.500, num.blocks=3,k=3))
+system.time(twohundred_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=200,k=3))
+system.time(onehundred_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=100,k=3))
+system.time(fifty_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=50,k=3))
+system.time(twentyfive_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=25,k=3))
+system.time(ten_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=10,k=3))
+system.time(five_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=5,k=3))
+system.time(three_blocks_for_2e4_recs_3 <- klsh(p=100,data.500, num.blocks=3,k=3))
 
 blockings_k3 <- list(
 						twohundred_blocks_for_2e4_recs_3,
@@ -112,13 +112,13 @@ reduction.ratio.from.blocking_k3 <- sapply(blockings_k3, reduction.ratio.from.bl
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3, 5, 10, 25, 50, 100, 200 with 20 random projections and a shingle size of 2.
 
 ```{r}
-system.time(twohundred_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=200,k=2))
-system.time(onehundred_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=100,k=2))
-system.time(fifty_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=50,k=2))
-system.time(twentyfive_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=25,k=2))
-system.time(ten_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=10,k=2))
-system.time(five_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=5,k=2))
-system.time(three_blocks_for_2e4_recs_2 <- klsh(p=20,data.500, num.blocks=3,k=2))
+system.time(twohundred_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=200,k=2))
+system.time(onehundred_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=100,k=2))
+system.time(fifty_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=50,k=2))
+system.time(twentyfive_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=25,k=2))
+system.time(ten_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=10,k=2))
+system.time(five_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=5,k=2))
+system.time(three_blocks_for_2e4_recs_2 <- klsh(p=100,data.500, num.blocks=3,k=2))
 
 blockings_k2 <- list(
 						twohundred_blocks_for_2e4_recs_2,
@@ -136,13 +136,13 @@ reduction.ratio.from.blocking_k2 <- sapply(blockings_k2, reduction.ratio.from.bl
 Next, we consider looking at various settings of the RLdata500 data set for block sizes 3, 5, 10, 25, 50, 100, 200 with 20 random projections and a shingle size of 1.
 
 ```{r}
-system.time(twohundred_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=200,k=1))
-system.time(onehundred_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=100,k=1))
-system.time(fifty_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=50,k=1))
-system.time(twentyfive_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=25,k=1))
-system.time(ten_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=10,k=1))
-system.time(five_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=5,k=1))
-system.time(three_blocks_for_2e4_recs_1 <- klsh(p=20,data.500, num.blocks=3,k=1))
+system.time(twohundred_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=200,k=1))
+system.time(onehundred_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=100,k=1))
+system.time(fifty_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=50,k=1))
+system.time(twentyfive_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=25,k=1))
+system.time(ten_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=10,k=1))
+system.time(five_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=5,k=1))
+system.time(three_blocks_for_2e4_recs_1 <- klsh(p=100,data.500, num.blocks=3,k=1))
 
 blockings_k1 <- list(
 						twohundred_blocks_for_2e4_recs_1,
