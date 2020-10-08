@@ -1,16 +1,16 @@
 ---
-title: "Introduction to klsh Package"
+title: "klsh"
 author: "Rebecca C. Steorts"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         fig_caption: yes
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{klsh}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
-We present a small example from Steorts, R., Ventura, S., Sadinle, M., and Fienberg, S. (2014). "Blocking Comparisons for Record Linkage." Privacy in Statistical Databases (Lecture Notes in Computer Science 8744), ed. J Domingo-Ferrer, Springer, 252-268, DOI:10.1007/978-3-319-11257-220. We will be using the RecordLinkage package in R and the RLdata500 data set. 
+We present a small example from Steorts, R., Ventura, S., Sadinle, M., and Fienberg, S. (2014). "Blocking Comparisons for Record Linkage." Privacy in Statistical Databases (Lecture Notes in Computer Science 8744), ed. J Domingo-Ferrer, Springer, 252-268, DOI:10.1007/978-3-319-11257-220. We will be using the blink package in R and the RLdata500 data set, which was previously available in the Record Linkage package (but has been deprecated).
 
 In a record linkage task one wants to remove duplicate 
 entries from multiple databases. However, before performing this task, one needs to perform a means of dimension reduction so that the record linkage task is computationally scalable. 
@@ -27,14 +27,14 @@ Our goals include
 
 ## Understanding the RLdata500 dataset
 
-The RLdata500 dataset exists already in the RecordLinkage package in R. We review this data set for the user. 
+The RLdata500 dataset exists already in the blink package in R. We review this data set for the user. 
 
 The RLdata500 data consists of 500 records with 10 percent duplication. Thus, there are 450 unique individuals. There is full information on each record containing first name, last name, and full date of birth. 
 
-We first load the Record Linkgae package and load the RLdata500 data set. We also, provide the first few lines of the data. We also remove missing values (they are all missing in this data set). 
+We first load the blink package and load the RLdata500 data set. We also, provide the first few lines of the data. We also remove missing values (they are all missing in this data set). 
 
 ```{r, echo=TRUE, message=FALSE, knitr::opts_chunk$set(cache=TRUE)}
-library(RecordLinkage)
+library(blink)
 library(plyr)
 library(klsh)
 data(RLdata500)

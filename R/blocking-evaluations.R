@@ -1,6 +1,6 @@
 #' Perform evaluations (recall) for blocking.
 #' 
-#' @import RecordLinkage
+#' @import blink
 #' @param blocking A list of the blocks
 #' @param true_ids The true identifiers for comparisons
 #' @param recall.only Flag that when true only prints the recall, otherwise
@@ -57,7 +57,7 @@ confusion.from.blocking <- function(blocking, true_ids, recall.only=FALSE) {
 
 #' Returns the block ids associated with a blocking method.
 #' 
-#' @import RecordLinkage
+#' @import blink
 #' @param blocking A list of the blocks.
 #' @return A list of the blocks ids that corresponds to each block 
 #' @export
@@ -75,7 +75,7 @@ block.ids.from.blocking <- function(blocking) {
 
 #' Returns the reduction ratio associated with a blocking method
 #' 
-#' @import RecordLinkage
+#' @import blink
 #' @import utils
 #' @param block.labels A list of the blocks labels.
 #' @return The reduction ratio
@@ -90,7 +90,7 @@ reduction.ratio <- function(block.labels) 1 - sum(choose(table(block.labels),2))
 
 #' Returns the reduction ratio associated with a blocking method
 #' 
-#' @import RecordLinkage
+#' @import blink
 #' @param blocking The actual blocks 
 #' @return The reduction ratio
 #' @export

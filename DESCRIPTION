@@ -4,8 +4,8 @@ Title: Blocking for Record Linkage
 Version: 0.1.0
 Authors@R: person("Rebecca", "Steorts", email = "beka@stat.duke.edu",
   role = c("aut", "cre"))
-Depends: R (>= 3.4),
-	RecordLinkage,
+Depends: R (>= 3.0.2),
+	blink,
 	stats,
 	utils,
 	plyr
@@ -13,10 +13,11 @@ Imports: Rcpp,
 	stringi,
 	SnowballC
 Suggests:
-	knitr,
-	ggplot2
+    knitr,
+    ggplot2,
+    rmarkdown
 VignetteBuilder: knitr
-Description: An implementation of the blocking algorithm KLSH in Steorts, Ventura, Sadinle, Fienberg (2014) <DOI:10.1007/978-3-319-11257-220>, which is a k-means variant of locality sensitive hashing. The method is illustrated with examples and a vignette. 
+Description: An implementation of the blocking algorithm KLSH in Steorts, Ventura, Sadinle, Fienberg (2014) <DOI.ORG/10.1007/978-3-319-11257-2_20>, which is a k-means variant of locality sensitive hashing. The method is illustrated with examples and a vignette. 
 Encoding: UTF-8
 LazyData: true
 License: GPL-3

@@ -34,7 +34,7 @@ tokenify <- function(string, k) {
 
 #' Function to convert a record into a bag of tokens with a fieldwise flag
 #'
-#' @import RecordLinkage
+#' @import blink
 #' @param record String or record
 #' @param k Parameter k, which is the number of shingle, tokens, or grams to break the string into
 #' @param fieldwise Flag where the defalt setting to include the record as the entire string
@@ -67,7 +67,7 @@ bag_of_word_ify <- function(record, k, fieldwise=FALSE){
 #'
 #' @import stats
 #' @import utils
-#' @import RecordLinkage
+#' @import blink
 #' @param r.set Record set
 #' @param k Parameter k, which is the number of shingle, tokens, or grams to break the string into
 #' @param fieldwise Flag where the defalt setting to include the record as the entire string
@@ -85,7 +85,7 @@ sacks_of_bags_of_words <- function(r.set, k, fieldwise=FALSE) {
 
 #' Function to calculate the inverse document frequency given a shingled bag of words
 #'
-#' @import RecordLinkage
+#' @import blink
 #' @param sack_of_bags Sack of bag of words
 #' @return Computes the inverse document frequency for a bag of words
 #' @export
@@ -116,7 +116,7 @@ calc_idf <- function(sack_of_bags) {
 #' takes (weighted) projections onto the random unit vectors given a bag of words
 #'
 
-#' @import RecordLinkage
+#' @import blink
 #' @import stats
 #' @import utils
 #' @param sack_of_bags Sack of bag of words
@@ -153,7 +153,7 @@ rproject_bags <- function(sack_of_bags, weighting_table) {
 #' Function that reduces a bag of words into a signature matrix using multiple
 #' random projections
 #'
-#' @import RecordLinkage
+#' @import blink
 #' @import plyr
 #' @param sack_of_bags Sack of bag of words
 #' @param p Number of random projections p
@@ -177,7 +177,7 @@ bag_signatures <- function(sack_of_bags, p, weighting_table) {
 #' Function that reduces a bag of words into a signature matrix using multiple
 #' random projections
 #'
-#' @import RecordLinkage
+#' @import blink
 #' @param r.set Set of records
 #' @param p Number of random projections p
 #' @param num.blocks The total number of desired blocks

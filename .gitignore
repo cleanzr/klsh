@@ -9,3 +9,4 @@
 *.DS_store
 
 klsh.Rproj
+inst/doc
