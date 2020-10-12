@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
-We present a small example from Steorts, R., Ventura, S., Sadinle, M., and Fienberg, S. (2014). "Blocking Comparisons for Record Linkage." Privacy in Statistical Databases (Lecture Notes in Computer Science 8744), ed. J Domingo-Ferrer, Springer, 252-268, <https://doi.org/10.1007/978-3-319-11257-2_20>. We will be using the blink package in R and the RLdata500 data set, which was previously available in the Record Linkage package (but has been deprecated).
+We present a small example from Steorts, R., Ventura, S., Sadinle, M., and Fienberg, S. (2014). "Blocking Comparisons for Record Linkage." Privacy in Statistical Databases (Lecture Notes in Computer Science 8744), ed. J Domingo-Ferrer, Springer, 252-268, \doi{10.1007/978-3-319-11257-2_20}. We will be using the blink package in R and the RLdata500 data set, which was previously available in the Record Linkage package (but has been deprecated).
 
 In a record linkage task one wants to remove duplicate 
 entries from multiple databases. However, before performing this task, one needs to perform a means of dimension reduction so that the record linkage task is computationally scalable. 
